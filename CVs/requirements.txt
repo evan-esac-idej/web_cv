@@ -1,4 +1,2 @@
 streamlit
-smtplib
-email
-import os
+os
