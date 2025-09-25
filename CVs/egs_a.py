@@ -64,7 +64,7 @@ if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = True
 
 # --- Botão para abrir/fechar ---
-if st.button("📂 Barra Lateral").help('Clique aqui para ver as informações da barra lateral'):
+if st.button("📂 Barra Lateral"):
     st.session_state.sidebar_open = not st.session_state.sidebar_open
 
 # --- Esconder sidebar via CSS se fechado ---
@@ -494,6 +494,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
