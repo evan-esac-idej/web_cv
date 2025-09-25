@@ -60,6 +60,23 @@ if 'lis' not in st.session_state:
     st.session_state.lis = [0]
 
 op = st.selectbox('', ['Formulário', 'Curriculum', 'Sobre'])
+if "sidebar_open" not in st.session_state:
+    st.session_state.sidebar_open = True
+
+# --- Botão para abrir/fechar ---
+if st.button("📂 Barra Lateral").help('Clique aqui para ver as informações da barra lateral'):
+    st.session_state.sidebar_open = not st.session_state.sidebar_open
+
+# --- Esconder sidebar via CSS se fechado ---
+if not st.session_state.sidebar_open:
+    st.markdown(
+        """
+        <style>
+            [data-testid="stSidebar"] {display: none;}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
 if op == 'Formulário':
     st.title("🧾 Formulário do Currículo")
@@ -477,6 +494,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
