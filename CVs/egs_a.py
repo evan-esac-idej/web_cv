@@ -301,7 +301,7 @@ try:
         with st.sidebar:
             if dados['imagem']:
                 st.image(dados['imagem'], width=200, caption=dados['nome'])
-                st.caption(dados['nome'])
+               
             st.header(" **Contacto**".upper())
             st.markdown(f"""
             - {dados['telefone']}
@@ -479,6 +479,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
