@@ -228,22 +228,7 @@ if op == 'Formulário':
 try:
     if op == 'Curriculum':
 
-        st.markdown(
-            """
-            <style>
-            /* Marca d'água como imagem de fundo discreta */
-            .stApp {
-                background-image: url("https://www.exemplo.com/marca_dagua.png");  /* PNG transparente */
-                background-repeat: no-repeat;
-                background-position: center;   /* ou 'bottom right' */
-                background-size: 10px 100px;  /* ajuste conforme necessidade */
-                opacity: 0.3;                  /* baixa opacidade */
-            }
-            </style>
-            """,
-            unsafe_allow_html=True
-        )
-
+    
 
         dados = st.session_state.get("dados_curriculo", None)
         # --- Aplica o CSS personalizado ---
@@ -494,6 +479,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
