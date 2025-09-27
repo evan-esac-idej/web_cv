@@ -441,8 +441,7 @@ try:
                 assunto="Confirmação do Pedido",
                 corpo=str(dados),
                 arquivo=imagem  # aqui pode passar UploadedFile direto
-            )
-                st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto consigo em breve.")
+            ): st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto consigo em breve.")
 
 except:
     st.error('Preencha as suas informações no formulário e :grey[*clique em Gerar curriculo*]\n'
@@ -478,6 +477,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
