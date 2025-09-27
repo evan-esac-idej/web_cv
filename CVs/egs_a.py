@@ -52,6 +52,9 @@ Espanhol: Intermediário
 """,
                              'cor_sidebar': '#F0F0F0',
                              'cor_texto': '#000000',
+                             'contacto':'+285',
+                             'email': '@gmail.com',
+                             'redes': '@meunome_redesocial',
                         }
 
 formu = st.session_state.data
@@ -99,9 +102,12 @@ if op == 'Formulário':
         st.sidebar.markdown("### 🖼️ Foto de Perfil")
         imagem = st.sidebar.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
         st.sidebar.markdown("### 📞 Contacto")
-        telefone = st.sidebar.text_input("Telefone", placeholder="+258 __ ___ ____")
-        email = st.sidebar.text_input("E-mail", placeholder="email@profissional.co.mz")
-        redes = st.sidebar.text_input("Rede social", placeholder="@nome_redesocial")
+        telefone = st.sidebar.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
+        st.session_state.data['contacto'] = telefone
+        email = st.sidebar.text_input("E-mail", placeholder="email@profissional.co.mz", value=formu['email'])
+        st.session_state.data['email'] = email
+        redes = st.sidebar.text_input("Rede social", placeholder="@nome_redesocial", value=formu['redes'])
+        st.session_state.data['redes'] = redes
 
         st.sidebar.markdown("### 🎨 Personalização")
         cor_sidebar = st.sidebar.color_picker("Cor da barra lateral", f"{formu['cor_sidebar']}")
@@ -421,7 +427,7 @@ try:
         
         placeholder = st.empty()
         if st.button("📩 no email"):
-            placeholder.warning("Obrigado por usar a nossa app. O seu curriculo será enviado no seu email. A nossa IA está a fazer algumas melhorias.")
+            placeholder.success("Obrigado por usar a nossa app. O seu curriculo será enviado no seu email. A nossa IA está a fazer algumas melhorias.")
             sleep(3)
             placeholder.empty()
             
@@ -469,6 +475,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
