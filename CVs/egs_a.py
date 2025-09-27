@@ -63,20 +63,7 @@ op = st.selectbox('', ['Formulário', 'Curriculum', 'Sobre'])
 if "sidebar_open" not in st.session_state:
     st.session_state.sidebar_open = True
 
-# --- Botão para abrir/fechar ---
-if st.button("📂 Barra Lateral"):
-    st.session_state.sidebar_open = not st.session_state.sidebar_open
 
-# --- Esconder sidebar via CSS se fechado ---
-if not st.session_state.sidebar_open:
-    st.markdown(
-        """
-        <style>
-            [data-testid="stSidebar"] {display: none;}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
 if op == 'Formulário':
     st.title("🧾 Formulário do Currículo")
@@ -227,9 +214,6 @@ if op == 'Formulário':
 
 try:
     if op == 'Curriculum':
-
-    
-
         dados = st.session_state.get("dados_curriculo", None)
         # --- Aplica o CSS personalizado ---
         st.markdown(f"""
@@ -360,9 +344,9 @@ try:
         st.markdown("</div>", unsafe_allow_html=True)
         st.markdown('---')
 
-        st.info("🚀 **Mais de 200 profissionais já conquistaram o currículo dos sonhos!**")
-        st.info("💼 **Aumente suas chances de sucesso:** solicite seu currículo profissional por apenas **500 MZN**.")
-        st.info("✨ **Destaque-se no mercado** com um currículo que abre portas para novas oportunidades.")
+        #st.info("🚀 **Mais de 200 profissionais já conquistaram o currículo dos sonhos!**")
+        #st.info("💼 **Aumente suas chances de sucesso:** solicite seu currículo profissional por apenas **500 MZN**.")
+        #st.info("✨ **Destaque-se no mercado** com um currículo que abre portas para novas oportunidades.")
 
         import smtplib
         from email.mime.text import MIMEText
@@ -434,7 +418,13 @@ try:
                 st.error(f"❌ Erro ao enviar e-mail: {e}")
                 return False
         imagem = dados['imagem']
-        if st.button("Contacte-nos"):
+        
+        placeholder = st.empty()
+        if st.button("📩 no email"):
+            placeholder.warning("Obrigado por usar a nossa app. O seu curriculo será enviado no seu email. A nossa IA está a fazer algumas melhorias.")
+            sleep(3)
+            placeholder.empty()
+            
             if enviar_email(
                 remetente=st.secrets["gmail"]["user"],
                 senha=st.secrets["gmail"]["password"],
@@ -479,6 +469,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
