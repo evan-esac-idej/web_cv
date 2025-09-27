@@ -427,8 +427,8 @@ try:
                 return False
         imagem = dados['imagem']
         
-        placeholder = st.empty()
-        if st.button("📩 no email"):
+        if st.button("📩 Envie no email"):
+            placeholder = st.empty()
             placeholder.success("Obrigado por usar a nossa app. O seu curriculo será enviado no seu email. A nossa IA está a fazer algumas melhorias.")
             sleep(3)
             placeholder.empty()
@@ -477,6 +477,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
