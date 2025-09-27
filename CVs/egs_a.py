@@ -197,7 +197,7 @@ if op == 'Formulário':
             </style>
         """, unsafe_allow_html=True)
 
-        submit = st.form_submit_button("🚀 Gerar Currículo")
+        submit = st.form_submit_button("🚀 Submeter")
 
         if submit:
             st.session_state["dados_curriculo"] = {
@@ -218,7 +218,7 @@ if op == 'Formulário':
                 "imagem": imagem
             }
 
-            st.info('As informações do seu curriculum já estão disponíveis.')
+            st.info('O seu curriculo está disponivel na opção :red[curriculum] no Menú Principal.')
 
 
 try:
@@ -478,6 +478,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
