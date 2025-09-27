@@ -52,7 +52,7 @@ Espanhol: Intermediário
 """,
                              'cor_sidebar': '#F0F0F0',
                              'cor_texto': '#000000',
-                             'contacto':'+285',
+                             'contacto':'+258 ',
                              'email': '@gmail.com',
                              'redes': '@meunome_redesocial',
                              'imagem':''
@@ -477,6 +477,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
