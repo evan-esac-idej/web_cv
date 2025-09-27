@@ -63,10 +63,11 @@ formu = st.session_state.data
 if 'lis' not in st.session_state:
     st.session_state.lis = [0]
 
-op = st.selectbox('', ['Formulário', 'Curriculum', 'Sobre'])
-if "sidebar_open" not in st.session_state:
-    st.session_state.sidebar_open = True
+import streamlit as st
+from streamlit_option_menu import option_menu
 
+op = option_menu("Menú Principal", ['Formulário', 'Curriculum', 'Sobre'],
+    icons=['list', 'person', 'gear'], menu_icon="cast", default_index=1, orientation='horizontal')
 
 
 if op == 'Formulário':
@@ -477,6 +478,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
