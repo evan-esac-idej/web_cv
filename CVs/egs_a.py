@@ -350,99 +350,6 @@ try:
                     st.markdown("<br>".join(partes[1:]), unsafe_allow_html=True)
 
         st.markdown("</div>", unsafe_allow_html=True)
-        st.markdown('---')
-
-        #st.info("🚀 **Mais de 200 profissionais já conquistaram o currículo dos sonhos!**")
-        #st.info("💼 **Aumente suas chances de sucesso:** solicite seu currículo profissional por apenas **500 MZN**.")
-        #st.info("✨ **Destaque-se no mercado** com um currículo que abre portas para novas oportunidades.")
-
-        import smtplib
-        from email.mime.text import MIMEText
-        from email.mime.multipart import MIMEMultipart
-        from email.mime.text import MIMEText
-        from email.mime.base import MIMEBase
-        from email import encoders
-        import os
-
-
-        def enviar_email(remetente, senha, destinatario, assunto='', corpo='', arquivo=None):
-            """
-            Envia e-mail pelo Gmail com ou sem anexo.
-
-            - remetente: e-mail de envio
-            - senha: senha ou App Password do Gmail
-            - destinatario: e-mail de destino
-            - assunto: assunto do e-mail
-            - corpo: corpo da mensagem (aceita texto simples e HTML)
-            - arquivo: pode ser:
-                1. UploadedFile (do st.file_uploader)
-                2. Caminho de arquivo no disco
-            """
-            msg = MIMEMultipart("alternative")
-            msg["From"] = remetente
-            msg["To"] = destinatario
-            msg["Subject"] = assunto
-
-            # Corpo do email
-            msg.attach(MIMEText(corpo, "plain"))
-            msg.attach(MIMEText(corpo, "html"))
-
-            # Anexo (se houver)
-            if arquivo:
-                try:
-                    if hasattr(arquivo, "getbuffer"):
-                        # Caso seja UploadedFile (Streamlit)
-                        nome_arquivo = arquivo.name
-                        file_data = arquivo.getbuffer()
-                        part = MIMEBase('application', 'octet-stream')
-                        part.set_payload(file_data)
-                    else:
-                        # Caso seja caminho do arquivo
-                        nome_arquivo = os.path.basename(arquivo)
-                        with open(arquivo, "rb") as f:
-                            file_data = f.read()
-                        part = MIMEBase('application', 'octet-stream')
-                        part.set_payload(file_data)
-
-                    encoders.encode_base64(part)
-                    part.add_header(
-                        'Content-Disposition',
-                        f'attachment; filename="{nome_arquivo}"'
-                    )
-                    msg.attach(part)
-
-                except Exception as e:
-                    st.error(f"❌ Erro ao anexar arquivo: {e}")
-                    return False
-
-            # Envio do e-mail
-            try:
-                with smtplib.SMTP("smtp.gmail.com", 587) as server:
-                    server.starttls()
-                    server.login(remetente, senha)
-                    server.send_message(msg)
-                return True
-            except Exception as e:
-                st.error(f"❌ Erro ao enviar e-mail: {e}")
-                return False
-        imagem = dados['imagem']
-        placeholder = st.empty()
-        from time import sleep
-        if st.button("📩 Envie no email"):
-            placeholder = st.empty()
-            placeholder.success("Obrigado por usar a nossa app. O seu curriculo será enviado no seu email. A nossa IA está a fazer algumas melhorias.")
-            sleep(5)
-            placeholder.empty()
-            
-            if enviar_email(
-                remetente=st.secrets["gmail"]["user"],
-                senha=st.secrets["gmail"]["password"],
-                destinatario=st.secrets["gmail"]["client"],
-                assunto="Confirmação do Pedido",
-                corpo=str(dados),
-                arquivo=imagem  # aqui pode passar UploadedFile direto
-            ): st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto contigo em breve.")
-
 except:
     st.error('Preencha as suas informações no formulário e :grey[*clique em Gerar curriculo*]\n'
              )
@@ -620,9 +527,7 @@ if op == 'Baixar':
         r = requests.get(url)
         st_lottie(r.json(), height=200, key="animations")
         imagem = dados['imagem']
-        st.warning("""
-        
-        
+        st.warning("""       
 Aquira o seu curriculo Gold - Online!
 
 """)
@@ -639,6 +544,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
