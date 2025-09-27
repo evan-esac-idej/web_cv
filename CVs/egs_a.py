@@ -66,8 +66,8 @@ if 'lis' not in st.session_state:
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-op = option_menu("Menú Principal", ['Formulário', 'Curriculum', 'Sobre'],
-    icons=['list', 'person', 'gear'], menu_icon="cast", default_index=1, orientation='horizontal')
+op = option_menu("Menú Principal", ['Formulário', 'Curriculum', 'Baixar'],
+    icons=['list', 'person', 'download'], menu_icon="cast", default_index=1, orientation='horizontal')
 
 
 if op == 'Formulário':
@@ -544,6 +544,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
