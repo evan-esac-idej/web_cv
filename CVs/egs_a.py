@@ -431,7 +431,7 @@ try:
         if st.button("📩 Envie no email"):
             placeholder = st.empty()
             placeholder.success("Obrigado por usar a nossa app. O seu curriculo será enviado no seu email. A nossa IA está a fazer algumas melhorias.")
-            sleep(3)
+            sleep(5)
             placeholder.empty()
             
             if enviar_email(
@@ -441,7 +441,7 @@ try:
                 assunto="Confirmação do Pedido",
                 corpo=str(dados),
                 arquivo=imagem  # aqui pode passar UploadedFile direto
-            ): st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto consigo em breve.")
+            ): st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto contigo em breve.")
 
 except:
     st.error('Preencha as suas informações no formulário e :grey[*clique em Gerar curriculo*]\n'
@@ -477,6 +477,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
