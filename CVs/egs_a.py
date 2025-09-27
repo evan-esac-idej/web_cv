@@ -220,10 +220,9 @@ if op == 'Formulário':
 
             st.info('O seu curriculo está disponivel na opção **Curriculum** no Menú Principal.')
 
-
+dados = st.session_state.get("dados_curriculo", None)
 try:
     if op == 'Curriculum':
-        dados = st.session_state.get("dados_curriculo", None)
         # --- Aplica o CSS personalizado ---
         st.markdown(f"""
                     <style>
@@ -448,34 +447,196 @@ except:
     st.error('Preencha as suas informações no formulário e :grey[*clique em Gerar curriculo*]\n'
              )
 
-if op == 'Sobre':
 
+if op == 'Baixar':
+    st.set_page_config(page_title="Gerador de Currículo", layout="wide")
+    # Lê a "página" atual pela URL (padrão: "formulario")
     st.title("Serviços de Criação de Currículo")
 
+    st.info("""
+        **Transforme sua carreira com um currículo moderno e impactante!**  
+        Escolha a melhor opção!""")
+    st.image("https://media.giphy.com/media/26BRzozg4TCBXv6QU/giphy.gif")
+    st.info("🚀 **Mais de 200 profissionais já conquistaram o currículo dos sonhos!**")
+    st.info("💼 **Aumente suas chances de sucesso:** solicite seu currículo profissional.")
+    st.info("✨ **Destaque-se no mercado** com um currículo que abre portas para novas oportunidades.")
+
+    import smtplib
+    from email.mime.text import MIMEText
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    from email.mime.base import MIMEBase
+    from email import encoders
+    import os
+
+
+    def enviar_email(remetente, senha, destinatario, assunto='', corpo='', arquivo=None):
+        """
+        Envia e-mail pelo Gmail com ou sem anexo.
+
+        - remetente: e-mail de envio
+        - senha: senha ou App Password do Gmail
+        - destinatario: e-mail de destino
+        - assunto: assunto do e-mail
+        - corpo: corpo da mensagem (aceita texto simples e HTML)
+        - arquivo: pode ser:
+            1. UploadedFile (do st.file_uploader)
+            2. Caminho de arquivo no disco
+        """
+        msg = MIMEMultipart("alternative")
+        msg["From"] = remetente
+        msg["To"] = destinatario
+        msg["Subject"] = assunto
+
+        # Corpo do email
+        msg.attach(MIMEText(corpo, "plain"))
+        msg.attach(MIMEText(corpo, "html"))
+
+        # Anexo (se houver)
+        if arquivo:
+            try:
+                if hasattr(arquivo, "getbuffer"):
+                    # Caso seja UploadedFile (Streamlit)
+                    nome_arquivo = arquivo.name
+                    file_data = arquivo.getbuffer()
+                    part = MIMEBase('application', 'octet-stream')
+                    part.set_payload(file_data)
+                else:
+                    # Caso seja caminho do arquivo
+                    nome_arquivo = os.path.basename(arquivo)
+                    with open(arquivo, "rb") as f:
+                        file_data = f.read()
+                    part = MIMEBase('application', 'octet-stream')
+                    part.set_payload(file_data)
+
+                encoders.encode_base64(part)
+                part.add_header(
+                    'Content-Disposition',
+                    f'attachment; filename="{nome_arquivo}"'
+                )
+                msg.attach(part)
+
+            except Exception as e:
+                st.error(f"❌ Erro ao anexar arquivo: {e}")
+                return False
+
+        # Envio do e-mail
+        try:
+            with smtplib.SMTP("smtp.gmail.com", 587) as server:
+                server.starttls()
+                server.login(remetente, senha)
+                server.send_message(msg)
+            return True
+        except Exception as e:
+            st.error(f"❌ Erro ao enviar e-mail: {e}")
+            return False
+
+
+
+    a, b = st.columns(2)
+    with a:
+        st.info("""### 👤 Currículo Boost
+        
+✅ Apresentação profissional  
+
+✅ Fácil de compartilhar com recrutadores
+
+✅ Grátis
+        """)
+    import streamlit as st
+    from streamlit_lottie import st_lottie
+    import requests
+    with b:
+        url = "https://assets1.lottiefiles.com/packages/lf20_touohxv0.json"
+        r = requests.get(url)
+        st_lottie(r.json(), height=200, key="animacao")
+
+    imagem = dados['imagem']
+    if st.button("Transferir"):
+        if enviar_email(
+                remetente=st.secrets["gmail"]["user"],
+                senha=st.secrets["gmail"]["password"],
+                destinatario=st.secrets["gmail"]["client"],
+                assunto="Confirmação do Pedido",
+                corpo=str(dados),
+                arquivo=imagem  # aqui pode passar UploadedFile direto
+        ):
+            st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto contigo em breve.")
+
+
+    a, b = st.columns([4, 2])
+    with a:
+        st.success("""### 🌐 Currículo Plus
+✅ Apresentação profissional  
+
+✅ Layout dinâmico e visualmente atractivo  
+
+✅ Fácil de compartilhar com recrutadores  
+
+✅ Aprimoramento e destaque de pontos chaves 
+
+✅ Assistência de um profissional de RH
+### Preço: 500 MZN""")
+    with b:
+        url = "https://assets1.lottiefiles.com/packages/lf20_touohxv0.json"
+        r = requests.get(url)
+        st_lottie(r.json(), height=200, key="animation")
+        imagem = dados['imagem']
+        st.success("Aquira o seu curriculo Plus!")
+        if st.button("""**Comprar**"""):
+            if enviar_email(
+                    remetente=st.secrets["gmail"]["user"],
+                    senha=st.secrets["gmail"]["password"],
+                    destinatario=st.secrets["gmail"]["client"],
+                    assunto="Confirmação do Pedido Plus",
+                    corpo=str(dados),
+                    arquivo=imagem  # aqui pode passar UploadedFile direto
+            ):
+                st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto contigo em breve.")
+    a, b = st.columns([4, 2])
+    with a:
+        st.warning(""" 
+### 💻 **Currículo Gold**  
+✅ Assistência de um profissional de RH
+
+##### ✅ Manutenção vitalícia de actualizações do seu perfil
+
+✅ Apresentação do currículo no idioma de sua preferência.
+
+##### ✅ Gráficos e destaques visuais dos seus projectos. 
+
+✅ Interface organizada, intuitiva e responsiva, que funciona bem em computador, tablet ou celular.  
+
+##### ✅ Apresentação profissional e personalizada.
+  
+✅ Ideal para impressionar clientes e recrutadores.  
+
+
+### Preço: 1.500 MZN
+""")
+
+    with b:
+        url = "https://assets1.lottiefiles.com/packages/lf20_touohxv0.json"
+        r = requests.get(url)
+        st_lottie(r.json(), height=200, key="animations")
+        imagem = dados['imagem']
+        st.warning("""
+        
+        
+Aquira o seu curriculo Gold - Online!
+
+""")
+        if st.button("""Comprar"""):
+            if enviar_email(
+                    remetente=st.secrets["gmail"]["user"],
+                    senha=st.secrets["gmail"]["password"],
+                    destinatario=st.secrets["gmail"]["client"],
+                    assunto="Confirmação do Pedido Gold",
+                    corpo=str(dados),
+                    arquivo=imagem  # aqui pode passar UploadedFile direto
+            ):
+                st.success("✅ E-mail enviado com sucesso! A nossa equipa irá entrar em contacto contigo em breve.")
     st.markdown("""
-    **Transforme sua carreira com um currículo moderno e impactante!**  
-    Escolha a melhor opção para você:
-
----
-
-### 🌐 Currículo 
-- Apresentação profissional  
-- Layout moderno e visualmente atractivo  
-- Fácil de compartilhar com recrutadores  
-**Preço:** +500 MZN
-
-    ---
-### 💻 Currículo Online 
-- **Experiência interativa e envolvente:** o cliente ou recrutador pode navegar pelo seu perfil de forma dinâmica, explorando cada seção sem perder tempo.  
-- **Gráficos e destaques visuais dos seus projectos:** transforme conquistas e resultados em imagens e gráficos fáceis de entender, mostrando seu impacto de forma clara.  
-- **Navegação simples e moderna:** interface organizada, intuitiva e responsiva, que funciona bem em computador, tablet ou celular.  
-- **Apresentação profissional e personalizada:** cada seção do currículo é estruturada para destacar suas habilidades, experiências e conquistas de forma estratégica.  
-- **Ideal para impressionar clientes e recrutadores:** um currículo interativo chama mais atenção do que documentos estáticos, aumentando suas chances de oportunidades.  
-**Preço:** 1.500 MZN
-
-
-    ---
-
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
 
