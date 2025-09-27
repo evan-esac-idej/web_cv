@@ -103,10 +103,9 @@ if op == 'Formulário':
         st.sidebar.markdown("### 🖼️ Foto de Perfil")
         imagem = st.sidebar.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
         if imagem:
-            st.session_state.data['imagem'] = imagem
-        else:
-            imagem = st.session_state.data['imagem']
-            st.sidebar.image(imagem, use_column_width=True)
+            st.session_state.data["imagem"] = Image.open(imagem)
+            imagem = st.session_state.data["imagem"]
+       
         st.sidebar.markdown("### 📞 Contacto")
         telefone = st.sidebar.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
         st.session_state.data['contacto'] = telefone
@@ -481,6 +480,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
