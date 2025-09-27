@@ -218,7 +218,7 @@ if op == 'Formulário':
                 "imagem": imagem
             }
 
-            st.info('O seu curriculo está disponivel na opção :red[curriculum] no Menú Principal.')
+            st.info('O seu curriculo está disponivel na opção **Curriculum** no Menú Principal.')
 
 
 try:
@@ -478,6 +478,7 @@ if op == 'Sobre':
 
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
