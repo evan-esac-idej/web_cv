@@ -1,12 +1,5 @@
 import streamlit as st
-
-st.set_page_config(page_title="Gerador de Currículo", layout="wide")
-
-import streamlit as st
-
-
-st.sidebar.title("Barra Lateral")
-st.sidebar.write("Sempre visível")
+st.set_page_config(page_title="Gerador de Currículo", layout="wide", initial_sidebar_state="expanded")
 
 if 'dados_curriculo' not in st.session_state:
     st.session_state["dados_curriculo"] = {
@@ -110,21 +103,21 @@ if op == 'Formulário':
         , height=200)
         st.session_state.data['idioma'] = idiomas
 
-        st.markdown("### 🖼️ Foto de Perfil")
+        st.sidebar.markdown("### 🖼️ Foto de Perfil")
         imagem = st.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
         
-        st.markdown("### 📞 Contacto")
-        telefone = st.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
+        st.sidebar.markdown("### 📞 Contacto")
+        telefone = st.sidebar.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
         st.session_state.data['contacto'] = telefone
-        email = st.text_input("E-mail", placeholder="email@profissional.co.mz", value=formu['email'])
+        email = st.sidebar.text_input("E-mail", placeholder="email@profissional.co.mz", value=formu['email'])
         st.session_state.data['email'] = email
-        redes = st.text_input("Rede social", placeholder="@nome_redesocial", value=formu['redes'])
+        redes = st.sidebar.text_input("Rede social", placeholder="@nome_redesocial", value=formu['redes'])
         st.session_state.data['redes'] = redes
 
-        st.markdown("### 🎨 Personalização")
-        cor_sidebar = st.color_picker("Cor da barra lateral", f"{formu['cor_sidebar']}")
+        st.sidebar.markdown("### 🎨 Personalização")
+        cor_sidebar = st.sidebar.color_picker("Cor da barra lateral", f"{formu['cor_sidebar']}")
         st.session_state.data['cor_sidebar'] = cor_sidebar
-        cor_texto = st.color_picker("Cor do texto", f"{formu['cor_texto']}")
+        cor_texto = st.sidebar.color_picker("Cor do texto", f"{formu['cor_texto']}")
         st.session_state.data['cor_texto'] = cor_texto
         fontes = [
             # --- Fontes padrão do sistema ---
@@ -136,7 +129,7 @@ if op == 'Formulário':
             "Oswald", "Playfair Display", "Nunito", "Inter", "Quicksand", "Ubuntu", "Fira Sans",
             "Inconsolata", "Cabin", "Source Sans Pro"
         ]
-        fonte = st.selectbox("Fonte", sorted(fontes), index=st.session_state.lis[::-1][0])
+        fonte = st.sidebar.selectbox("Fonte", sorted(fontes), index=st.session_state.lis[::-1][0])
         if sorted(fontes).index(fonte) != st.session_state.lis[::-1][0]:
             st.session_state.lis.append(sorted(fontes).index(fonte))
             st.rerun()
@@ -232,8 +225,6 @@ if op == 'Formulário':
 dados = st.session_state.get("dados_curriculo", None)
 try:
     if op == 'Curriculum':
-        st.set_page_config(page_title="Gerador de Currículo", layout="wide", initial_sidebar_state="expanded")
-        # --- Aplica o CSS personalizado ---
         st.markdown(f"""
                     <style>
                         /* Sidebar */
@@ -366,8 +357,7 @@ except:
 
 
 if op == 'Baixar':
-    st.set_page_config(page_title="Gerador de Currículo", layout="wide")
-    # Lê a "página" atual pela URL (padrão: "formulario")
+
     st.title("Serviços de Criação de Currículo")
 
     st.info("""
@@ -554,6 +544,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
