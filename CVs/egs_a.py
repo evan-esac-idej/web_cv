@@ -105,21 +105,21 @@ if op == 'Formulário':
         , height=200)
         st.session_state.data['idioma'] = idiomas
 
-        st.sidebar.markdown("### 🖼️ Foto de Perfil")
-        imagem = st.sidebar.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
+        st.markdown("### 🖼️ Foto de Perfil")
+        imagem = st.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
         
-        st.sidebar.markdown("### 📞 Contacto")
-        telefone = st.sidebar.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
+        st.markdown("### 📞 Contacto")
+        telefone = st.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
         st.session_state.data['contacto'] = telefone
-        email = st.sidebar.text_input("E-mail", placeholder="email@profissional.co.mz", value=formu['email'])
+        email = st.text_input("E-mail", placeholder="email@profissional.co.mz", value=formu['email'])
         st.session_state.data['email'] = email
-        redes = st.sidebar.text_input("Rede social", placeholder="@nome_redesocial", value=formu['redes'])
+        redes = st.text_input("Rede social", placeholder="@nome_redesocial", value=formu['redes'])
         st.session_state.data['redes'] = redes
 
-        st.sidebar.markdown("### 🎨 Personalização")
-        cor_sidebar = st.sidebar.color_picker("Cor da barra lateral", f"{formu['cor_sidebar']}")
+        st.markdown("### 🎨 Personalização")
+        cor_sidebar = st.color_picker("Cor da barra lateral", f"{formu['cor_sidebar']}")
         st.session_state.data['cor_sidebar'] = cor_sidebar
-        cor_texto = st.sidebar.color_picker("Cor do texto", f"{formu['cor_texto']}")
+        cor_texto = st.color_picker("Cor do texto", f"{formu['cor_texto']}")
         st.session_state.data['cor_texto'] = cor_texto
         fontes = [
             # --- Fontes padrão do sistema ---
@@ -131,7 +131,7 @@ if op == 'Formulário':
             "Oswald", "Playfair Display", "Nunito", "Inter", "Quicksand", "Ubuntu", "Fira Sans",
             "Inconsolata", "Cabin", "Source Sans Pro"
         ]
-        fonte = st.sidebar.selectbox("Fonte", sorted(fontes), index=st.session_state.lis[::-1][0])
+        fonte = st.selectbox("Fonte", sorted(fontes), index=st.session_state.lis[::-1][0])
         if sorted(fontes).index(fonte) != st.session_state.lis[::-1][0]:
             st.session_state.lis.append(sorted(fontes).index(fonte))
             st.rerun()
@@ -548,6 +548,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
