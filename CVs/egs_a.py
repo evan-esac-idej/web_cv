@@ -69,6 +69,9 @@ from streamlit_option_menu import option_menu
 op = option_menu("Menú Principal", ['Formulário', 'Curriculum', 'Baixar'],
     icons=['list', 'person', 'download'], menu_icon="cast", default_index=1, orientation='horizontal')
 
+st.info(" :green[Você pode alterar o tema do *site* para claro ao alterar o tema do seu celular para claro e acedendo novamente ao site.] ")
+st.info(":green[Uma forma alternativa é clicar no icon **⋮** no canto superior direito. seguir para *settings** ou configurações e mudar o tema para *light*]")
+
 
 if op == 'Formulário':
     st.title("🧾 Formulário do Currículo")
@@ -544,6 +547,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
