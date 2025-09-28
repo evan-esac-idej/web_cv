@@ -72,8 +72,8 @@ op = option_menu("Menú Principal", ['Formulário', 'Curriculum', 'Baixar'],
 
 
 if op == 'Formulário':
-    st.info("#### Você pode alterar o tema do *site* para claro ao alterar o tema do seu celular para claro e acedendo novamente ao site.")
-    st.info("#### Uma forma alternativa é clicar no icon **⋮** no canto superior direito. seguir para *settings** ou configurações e mudar o tema para *light*")
+    st.info("Você pode alterar o tema do *site* para claro ao alterar o tema do seu celular para claro e acedendo novamente ao site.")
+    st.info("Uma forma alternativa é clicar no icon **⋮** no canto superior direito. seguir para *settings* ou configurações e mudar o tema para *light*")
 
     st.title("🧾 Formulário do Currículo")
     with st.form("formulario_curriculo"):
@@ -548,6 +548,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
