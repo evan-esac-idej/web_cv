@@ -1,7 +1,12 @@
 import streamlit as st
 
-st.set_page_config(page_title="Gerador de Currículo", layout="centered")
-# Lê a "página" atual pela URL (padrão: "formulario")
+st.set_page_config(page_title="Gerador de Currículo", layout="wide")
+
+import streamlit as st
+
+
+st.sidebar.title("Barra Lateral")
+st.sidebar.write("Sempre visível")
 
 if 'dados_curriculo' not in st.session_state:
     st.session_state["dados_curriculo"] = {
@@ -227,6 +232,7 @@ if op == 'Formulário':
 dados = st.session_state.get("dados_curriculo", None)
 try:
     if op == 'Curriculum':
+        st.set_page_config(page_title="Gerador de Currículo", layout="wide", initial_sidebar_state="expanded")
         # --- Aplica o CSS personalizado ---
         st.markdown(f"""
                     <style>
@@ -548,6 +554,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
