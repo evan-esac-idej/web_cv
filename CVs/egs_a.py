@@ -104,7 +104,7 @@ if op == 'Formulário':
         st.session_state.data['idioma'] = idiomas
 
         st.sidebar.markdown("### 🖼️ Foto de Perfil")
-        imagem = st.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
+        imagem = st.sidebar.file_uploader("Foto de perfil", type=["jpg", "jpeg", "png"])
         
         st.sidebar.markdown("### 📞 Contacto")
         telefone = st.sidebar.text_input("Telefone", placeholder="+258 __ ___ ____", value=formu['contacto'])
@@ -544,6 +544,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
