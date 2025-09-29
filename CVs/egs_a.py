@@ -1,5 +1,6 @@
 import streamlit as st
 st.set_page_config(page_title="Gerador de Currículo", layout="wide", initial_sidebar_state="expanded")
+st.set_option("client.showSidebarNavigation", True)
 
 if 'dados_curriculo' not in st.session_state:
     st.session_state["dados_curriculo"] = {
@@ -544,6 +545,7 @@ Aquira o seu curriculo Gold - Online!
     st.markdown("""
     **💡 Observação:** Os preços são compensatórios e garantem um trabalho de alta qualidade, totalmente personalizado para destacar suas competências.
     """)
+
 
 
 
